@@ -8,10 +8,10 @@ services:
       interval: 1s
       timeout: 5s
       retries: 10
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 8080:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
     links:
       - api
       - app
@@ -22,10 +22,10 @@ services:
       dockerfile: docker/app.Dockerfile
     container_name: "app"
     env_file: ./environments/app.env
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     volumes:
       - upload-data:/usr/src/app/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   api:
     build:
